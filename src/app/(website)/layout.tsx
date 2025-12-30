@@ -1,6 +1,8 @@
 
-import ScrollSmoother from "@/src/components/ScrollSmoother";
+// import ScrollSmoother from "@/src/components/ScrollSmoother";
 // import Loader from "../../components/Loader";
+
+import SmoothScroller from "../../components/ScrollSmoother";
 
 export default function RootLayout({
   children,
@@ -10,7 +12,7 @@ export default function RootLayout({
   return (
     <main className={`main-layout`}>
       {/* <Loader /> */}
-      <ScrollSmoother>{children}</ScrollSmoother>
+      <SmoothScroller>{children}</SmoothScroller>
     </main>
   );
 }
