@@ -14,7 +14,7 @@ export default function Home() {
       <Projects />
       <Skills />
       <About />
-      <Footer /> 
+      <Footer />
     </div>
   );
 }

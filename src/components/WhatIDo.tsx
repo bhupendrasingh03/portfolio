@@ -2,6 +2,7 @@
 import React, { useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import useMobile from '../hooks/useMobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -39,6 +40,47 @@ export default function WhatIDo() {
     const sectionRef = useRef<HTMLDivElement>(null)
     const trackRef = useRef<HTMLDivElement>(null)
     const counterRef = useRef<HTMLSpanElement>(null)
+
+    const { isMobile } = useMobile();
+
+    const ItemsContent = () => {
+        return (
+            <div className="lg:w-2/3 overflow-hidden lg:pt-0 pt-12">
+                <div ref={trackRef} className="flex flex-col">
+                    {ITEMS.map((item, index) => (
+                        <div
+                            key={index}
+                            className="what-slide lg:min-h-screen flex flex-col lg:justify-center gap-6 pb-10"
+                        >
+                            <h3 className="lg:text-5xl text-3xl font-semibold slide-title">
+                                {item.title}
+                            </h3>
+
+                            <p className="max-w-[420px] slide-desc text-xl opacity-70">
+                                {item.desc}
+                            </p>
+
+                            <ul className="mt-6 slide-list">
+                                {item.list.map((tools, i) => (
+                                    <li
+                                        key={i}
+                                        className="py-3 slide-item flex items-center border-b border-gray-500/50"
+                                    >
+                                        <span className="mr-3 font-bold text-xl opacity-60">
+                                            0{i + 1}
+                                        </span>
+                                        <p className="lg:text-3xl text-xl capitalize">
+                                            {tools.join(', ')}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )
+    }
 
     useLayoutEffect(() => {
         if (!sectionRef.current || !trackRef.current) return
@@ -109,12 +151,21 @@ export default function WhatIDo() {
                     pin: true,
                     anticipatePin: 1,
                     invalidateOnRefresh: true,
+                    onUpdate: (self) => {
+                        const index = Math.min(
+                            totalSlides - 1,
+                            Math.floor(self.progress * totalSlides)
+                        )
+                        if (counterRef.current) {
+                            counterRef.current.textContent = `0${index + 1}`
+                        }
+                    },
                 },
             })
-
         })
-
+        
         return () => ctx.revert()
+
     }, [])
 
     return (
@@ -135,7 +186,7 @@ export default function WhatIDo() {
                 {/* PINNED */}
                 <div
                     ref={sectionRef}
-                    className="relative h-screen overflow-hidden"
+                    className="lg:block hidden relative h-screen overflow-hidden"
                 >
                     <div className="lg:flex h-full">
                         {/* LEFT */}
@@ -149,187 +200,13 @@ export default function WhatIDo() {
                         </div>
 
                         {/* RIGHT */}
-                        <div className="lg:w-2/3 overflow-hidden ">
-                            <div ref={trackRef} className="flex flex-col">
-                                {ITEMS.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="what-slide min-h-screen flex flex-col justify-center gap-6 pb-10"
-                                    >
-                                        <h3 className="lg:text-5xl text-3xl font-semibold slide-title">
-                                            {item.title}
-                                        </h3>
+                        {!isMobile && (<ItemsContent />)}
 
-                                        <p className="max-w-[420px] slide-desc text-xl opacity-70">
-                                            {item.desc}
-                                        </p>
-
-                                        <ul className="mt-6 slide-list">
-                                            {item.list.map((tools, i) => (
-                                                <li
-                                                    key={i}
-                                                    className="py-3 slide-item flex items-center border-b border-gray-500/50"
-                                                >
-                                                    <span className="mr-3 font-bold text-xl opacity-60">
-                                                        0{i + 1}
-                                                    </span>
-                                                    <p className="lg:text-3xl text-xl capitalize">
-                                                        {tools.join(', ')}
-                                                    </p>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
                     </div>
                 </div>
+
+                {isMobile && (<ItemsContent />)}
             </div>
         </section>
     )
 }
-
-
-
-
-
-// 'use client'
-// import { gsap, ScrollTrigger, registerGSAP } from "../lib/gsap";
-// import React, { useLayoutEffect, useRef } from 'react'
-
-// const ITEMS = [
-//     {
-//         title: "Development",
-//         desc: "From frontend interactions to backend APIs, I build complete web solutions. I work with modern stacks to deliver apps that are scalable, maintainable, and ready for real-world users.",
-//         list: [
-//             { tools: ["React", "Next.js", "Vue.js"] },
-//             { tools: ["REST APIs", "Fetch", "Axios"] },
-//             { tools: ["Git", "GitHub", "Postman", "Vite", "Webpack"] },
-//         ],
-//     },
-//     {
-//         title: "Performance",
-//         desc: "Optimizing performance and smooth interactions with GSAP.",
-//         list: [
-//             { tools: ["Lazy Loading", "Memoization"] },
-//             { tools: ["Code Splitting", "SEO Principles"] },
-//             { tools: ["Cross-browser Compatibility"] },
-//         ],
-//     },
-//     {
-//         title: "Design & UX",
-//         desc: "Creating polished and intuitive digital experiences.",
-//         list: [
-//             { tools: ["Figma", "Adobe XD", "Photoshop"] },
-//             { tools: ["Responsive Design", "Accessibility", "Typography"] },
-//             { tools: ["Animations & Microinteractions", "Prototyping"] },
-//         ],
-//     },
-// ];
-
-// export default function WhatIDo() {
-//     const pinSectionRef = useRef<HTMLDivElement>(null);
-//     const titleRef = useRef<HTMLHeadingElement>(null);
-//     const descRef = useRef<HTMLParagraphElement>(null);
-//     const counterRef = useRef<HTMLSpanElement>(null);
-//     const listRef = useRef<HTMLUListElement>(null);
-
-//     useLayoutEffect(() => {
-//         if (!pinSectionRef.current) return; // ensure DOM exists
-
-//         registerGSAP();
-
-//         const ctx = gsap.context(() => {
-//             const tl = gsap.timeline({
-//                 defaults: { ease: "power4.out", duration: 1 },
-//             });
-
-
-
-//             ScrollTrigger.create({
-//                 trigger: pinSectionRef.current,
-//                 start: "10% top",
-//                 end: `+=${ITEMS.length * 100}%`,
-//                 scrub: true,
-//                 pin: true,
-//                 onUpdate: (self) => {
-//                     const index = Math.min(
-//                         ITEMS.length - 1,
-//                         Math.floor(self.progress * ITEMS.length)
-//                     );
-
-//                     counterRef.current!.textContent = `(0${index + 1})`;
-//                     titleRef.current!.textContent = ITEMS[index].title;
-//                     descRef.current!.textContent = ITEMS[index].desc;
-
-//                     // Render list dynamically
-//                     const toolsHTML = ITEMS[index].list
-//                         .map(item => item.tools.join(", "))
-//                         .map((str, i) => `<li class="py-3 m-0 flex items-center border-b border-gray-500/50">
-//                             <span class="mr-2 font-bold text-xl opacity-60">0${i + 1}</span>
-//                             <p class="text-3xl capitalize">${str}</p>
-//                             </li>`)
-//                         .join("");
-//                     if (listRef.current) {
-//                         listRef.current.innerHTML = toolsHTML;
-//                     }
-//                 },
-//             });
-//         });
-
-//         return () => ctx.revert();
-//     }, []);
-
-//     return (
-//         <section className="relative bg-[#000] z-20 text-white">
-//             <div className="app-wrapper">
-
-//                 <div className="content-head pt-20">
-//                     <h1 className="hero-name text-[7.5vw] tracking-wide uppercase font-bold mb-6 flex justify-between gap-4 overflow-hidden">
-//                         What I Do /
-//                     </h1>
-//                     <div className="text max-w-[760px] pt-10 pr-40 mx-auto mr-0 flex gap-12">
-//                         <span className="block text-[#999]">(Services)</span>
-//                         <p className="pro-desc text-[22px] text-gray-300 leading-8">
-//                             {"I specialize in building full-stack web applications that are fast, reliable, and user-friendly. With a solid foundation in both frontend and backend technologies, I help bring ideas to life whether it's for a business, a startup, or a product team."
-//                                 .split(" ")
-//                                 .map((word, index) => (
-//                                     <span key={index} className="inline-block">
-//                                         {word}&nbsp;
-//                                     </span>
-//                                 ))}
-//                         </p>
-//                     </div>
-//                 </div>
-
-//                 <div ref={pinSectionRef} className="relative min-h-[80vh] mt-20 border-t border-gray-400/50">
-//                     <div className="flex h-screen">
-//                         <div className="lg:w-[50%] flex items-center">
-//                             <h2 className="text-6xl font-bold text-gray-300">
-//                                 <span ref={counterRef}>01</span>
-//                             </h2>
-//                         </div>
-
-//                         <div className="w-2/3 flex flex-col justify-center gap-6">
-//                             <div>
-//                                 <h3 ref={titleRef} className="text-5xl font-semibold capitalize pb-10">{ITEMS[0].title}</h3>
-//                                 <p ref={descRef} className="max-w-[400px] text-xl opacity-70 text-gray-200">{ITEMS[0].desc}</p>
-//                             </div>
-//                             <ul ref={listRef} className="mt-6 list-disc">
-//                                 {ITEMS[0].list.map((item, idx) => (
-//                                     <li
-//                                         key={idx + 1}
-//                                         className="py-3 m-0 flex items-center border-b border-gray-500/50">
-//                                         <span className="mr-2 font-bold text-xl opacity-60">0{idx + 1}</span>
-//                                         <p className="text-3xl capitalize">{item.tools.join(", ")}</p>
-//                                     </li>
-//                                 ))}
-//                             </ul>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </section>
-//     );
-// }

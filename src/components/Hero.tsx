@@ -99,7 +99,7 @@ export default function Hero() {
         >
             <div className="app-wrapper">
                 {/* NAME */}
-                <h1 className="hero-name lg:text-[9.5vw] text-[8.6vw] tracking-wide uppercase font-bold mb-6 flex justify-between gap-4 overflow-hidden">
+                <h1 className="hero-name lg:text-[9.5vw] text-4xl tracking-wide uppercase font-bold mb-6 flex lg:justify-between gap-4 overflow-hidden">
                     {["Bhupendra", "Singh"].map((name, index) => (
                         <span key={index} className="inline-block">
                             {name}
