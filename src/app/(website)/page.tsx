@@ -5,6 +5,7 @@ import Projects from "../../components/Projects";
 import Skills from "../../components/Skills";
 import About from "../../components/About";
 import Footer from "../../components/Footer";
+import BlogContainer from "../../components/Blogs/BlogContainer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Projects />
       <Skills />
       <About />
+      <BlogContainer />
       <Footer />
     </div>
   );
