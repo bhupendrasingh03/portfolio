@@ -35,28 +35,28 @@ export const blogsList: BlogItem[] = [
         // image: "",
         heading: "What is Lexical Scope?",
         date: "Oct 05, 2025",
-        slug: "what-is-lexical-scope-d0358c6f52c0",
+        slug: url + "what-is-lexical-scope-d0358c6f52c0",
         category: "JavaScript"
     },
     {
         // image: "",
         heading: "Understanding JavaScript Promises: A Beginner-Friendly Guide",
         date: "Oct 10, 2025",
-        slug: "understanding-javascript-promises-a-beginner-friendly-guide-742f82d72d16",
+        slug: url + "understanding-javascript-promises-a-beginner-friendly-guide-742f82d72d16",
         category: "JavaScript"
     },
     {
         // image: "",
         heading: "4 variants of promises : Promise.all(), Promise.allSettled(), Promise.any(), and Promise.race()",
         date: "Oct 12, 2025",
-        slug: "4-variants-of-promises-promise-all-promise-allsettled-promise-any-and-promise-race-98f5591a5224",
+        slug: url + "4-variants-of-promises-promise-all-promise-allsettled-promise-any-and-promise-race-98f5591a5224",
         category: "JavaScript"
     },
     {
         // image: "",
         heading: "Event Loop in JavaScript?",
         date: "Nov 01, 2025",
-        slug: "event-loop-in-javascript-bf679b345f1f",
+        slug: url + "event-loop-in-javascript-bf679b345f1f",
         category: "JavaScript"
     },
 ]
