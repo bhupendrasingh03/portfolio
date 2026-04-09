@@ -142,7 +142,7 @@ export default function Hero() {
                             width={400}
                             src="/assets/images/mypic1.jpg"
                             alt="Profile Image"
-                            className="hero- hover:grayscale-[0.4] h-full lg:w-[95%] object-cover object-top rounded-md"
+                            className="hero-img h-full lg:w-[90%] object-cover object-top rounded-md"
                             style={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
                             priority
                         />
