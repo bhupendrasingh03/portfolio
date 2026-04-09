@@ -36,7 +36,7 @@ const BlogContainer = () => {
             <div className="app-wrapper">
                 <div className="lg:flex">
                     {/* HEADER */}
-                    <div className="lg:w-[30%] lg:py-20 py-10 lg:border-r border-gray-50/20">
+                    <div className="lg:w-[30%] lg:py-8 py-10 lg:border-r border-gray-50/20">
                         <div ref={headerRef}>
                             <h1 className="lg:text-[7vw] text-[35px] heading-projects uppercase font-extrabold tracking-tight overflow-hidden">
                                 Blogs
@@ -50,7 +50,21 @@ const BlogContainer = () => {
                         {blogsList.map((data) => <div key={data.heading} className="w-full" >
                             <BlogCard blog={data} />
                         </div>)}
+                        <a
+                            className="text-white text-xl flex items-center hover:border-white transition transform hover:translate-x-1"
+                            href="https://medium.com/@bp.singh" target="_blank">
+                            
+                            <span className="">View All Blogs</span>
+
+                            <div className="w-[40px] flex justify-end">
+                                <div className="text-3xl flex items-center justify-center text-white/60 hover:text-white -rotate-45">
+                                    →
+                                </div>
+                            </div>
+                        </a>
                     </div>
+
+
                 </div>
             </div>
         </div>

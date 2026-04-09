@@ -112,10 +112,10 @@ export default function About() {
                     <div className="relative w-full h-[520px] max-w-[320px] overflow-hidden rounded-md flex items-end justify-center mx-auto mr-0 about-image">
 
                         <Image
-                            src="/assets/images/about.jpeg"
+                            src="/assets/images/mypic1.jpg"
                             alt="About Bhupendra Singh"
                             fill
-                            className="object-cover cursor-pointer grayscale hover:grayscale-0 transition-all duration-500"
+                            className="object-cover cursor-pointer  hover:grayscale-[0.2] transition-all duration-500"
                             priority
                         />
                     </div>
