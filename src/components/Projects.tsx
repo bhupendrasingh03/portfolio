@@ -12,25 +12,25 @@ const ITEMS = [
         name: "Travel Booking System",
         desc: "Developed a full-stack travel booking system where users can explore travel packages, enter passenger details, and complete bookings through a structured multi-step flow. Emphasized real-world booking logic, form validation, and a responsive, production-ready UI.",
         tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
-        github: "https://github.com/bhupendrasingh03/",
-    },
-    {
-        name: "Dynamic CMS Platform",
-        desc: "Built a flexible content management platform focused on reusable UI components and API-driven content rendering. Integrated smooth GSAP animations and modular layouts to allow non-technical users to manage content without breaking design consistency.",
-        tech: ["Next.js", "GSAP", "REST API"],
-        github: "",
-    },
-    {
-        name: "Cloud Drive Web Application",
-        desc: "Designed and developed a secure cloud-based file management system that enables users to upload, organize, share, and control access to files. Implemented role-based permissions, authentication workflows, and optimized UI performance for handling large datasets efficiently.",
-        tech: ["React", "Node.js", "MongoDB", "JWT"],
         github: "",
     },
     {
         name: "Flight Booking Interface",
         desc: "Created a modern flight booking experience with real-time filtering, dynamic pricing logic, and centralized state management. Focused on building an intuitive user journey from flight discovery to booking while maintaining performance and scalability.",
         tech: ["React", "Redux", "Tailwind CSS"],
-        github: "",
+        github: "https://github.com/bhupendrasingh03/get-tkt",
+    },
+    {
+        name: "Dynamic CMS Platform",
+        desc: "Built a flexible content management platform focused on reusable UI components and API-driven content rendering. Integrated smooth GSAP animations and modular layouts to allow non-technical users to manage content without breaking design consistency.",
+        tech: ["Next.js", "GSAP", "REST API"],
+        github: "https://github.com/bhupendrasingh03/",
+    },
+    {
+        name: "Cloud Drive Web Application",
+        desc: "Designed and developed a secure cloud-based file management system that enables users to upload, organize, share, and control access to files. Implemented role-based permissions, authentication workflows, and optimized UI performance for handling large datasets efficiently.",
+        tech: ["React", "Node.js", "MongoDB", "JWT"],
+        github: "https://github.com/bhupendrasingh03/",
     },
 ]
 
